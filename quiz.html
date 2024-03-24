@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QUIZ</title>
+</head>
+<body>
+  <h1>LIST OF PAST PRESIDENTS IN NIGERIA</h1>
+
+<script>
+
+  // Sample data: Presidents and their ages
+const presidents = [
+  { name: "Nnamdi Azikiwe", age: 95 },
+  { name: "Shehu Shagari", age: 93 },
+  { name: "Olusegun Obasanjo", age: 85 },
+  { name: "Umaru Musa Yar'Adua", age: 58 },
+  { name: "Goodluck Jonathan", age: 63 },
+  { name: "Muhammadu Buhari", age: 79 }
+];
+
+// Function to prompt the user for guesses and calculate the score
+function takeQuiz() {
+  let totalScore = 0;
+  let numCorrect = 0;
+
+  presidents.forEach(president => {
+      let guess = parseInt(prompt(`Guess the age of ${president.name}:`));
+
+      if (!isNaN(guess)) {
+          if (guess === president.age) {
+              totalScore += 0.1; // Increase score by 10%
+              numCorrect++;
+          }
+      }
+  });
+
+  return { totalScore, numCorrect };
+}
+
+// Function to display the score performance
+function displayScorePerformance(cohortName, passcode) {
+  let { totalScore, numCorrect } = takeQuiz();
+  let scorePercentage = totalScore * 100;
+
+  console.log(`Cohort Name: ${cohortName}`);
+  console.log(`Passcode: ${passcode}`);
+  console.log(`Your score: ${scorePercentage.toFixed(2)}% (${numCorrect} correct out of ${presidents.length})`);
+}
+
+// Example usage
+let cohortName = prompt("Enter your cohort name:");
+let passcode = prompt("Enter your passcode:");
+
+displayScorePerformance(cohortName, passcode);
+
+</script>
+ 
+</body>
+</html>
