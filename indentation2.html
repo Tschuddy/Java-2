@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+</head>
+<body>
+    <h2>Student Management</h2>
+    <ul id="studentList">
+        <!-- List of students will be populated here -->
+    </ul>
+    <button onclick="deleteSelected()">Delete Selected</button>
+    <script>
+        // Sample student data
+        let students = [
+            { id: 1, name: "NORB" },
+            { id: 2, name: "PRINCE" },
+            { id: 3, name: "LAW" },
+            { id: 4, name: "FELIX" },
+            { id: 5, name: "DANIEL" }
+        ];
+
+        // Function to display students in the list
+        function displayStudents() {
+            let list = document.getElementById("studentList");
+            list.innerHTML = ""; // Clear existing list
+
+            students.forEach((student, index) => {
+                let listItem = document.createElement("li");
+                listItem.innerHTML = `<input type="checkbox" name="deleteCheckbox" value="${index}">${student.id}. ${student.name}`;
+                list.appendChild(listItem);
+            });
+        }
+
+        // Function to delete selected students
+        function deleteSelected() {
+            let checkboxes = document.getElementsByName("deleteCheckbox");
+            let indicesToDelete = [];
+
+            checkboxes.forEach((checkbox, index) => {
+                if (checkbox.checked) {
+                    indicesToDelete.push(parseInt(checkbox.value));
+                }
+            });
+
+            // Remove students from the list by index
+            indicesToDelete.sort((a, b) => b - a); // Sort indices in descending order to avoid shifting
+            indicesToDelete.forEach(index => {
+                students.splice(index, 1);
+            });
+
+            // Redisplay the updated list of students
+            displayStudents();
+        }
+
+        // Initial display of students
+        displayStudents();
+    </script>
+</body>
+</html>

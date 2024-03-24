@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+    <style>
+        /* Some basic styling */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+  
+    <h2>Student Management</h2>
+    <ul id="studentList">
+        <!-- List of students will be populated here -->
+    </ul>
+    <script>
+        // Sample student data
+        let students = [
+            { id: 1, name: "NORB" },
+            { id: 2, name: "PRINCE" },
+            { id: 3, name: "LAW" },
+            { id: 4, name: "FELIX" },
+            { id: 5, name: "DANIEL" }
+        ];
+
+        // Function to display students in the list
+        function displayStudents() {
+            let list = document.getElementById("studentList");
+            list.innerHTML = ""; // Clear existing list
+
+            students.forEach(student => {
+                let listItem = document.createElement("li");
+                listItem.textContent = `${student.id}. ${student.name}`;
+                listItem.onclick = () => deleteStudent(student.id); // Call deleteStudent function when clicked
+                list.appendChild(listItem);
+            });
+        }
+
+        // Function to delete a student by ID
+        function deleteStudent(id) {
+            students = students.filter(student => student.id !== id);
+            displayStudents();
+        }
+
+        // Initial display of students
+        displayStudents();
+    </script>
+</body>
+</html>
