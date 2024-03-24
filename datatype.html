@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Type Checker</title>
+</head>
+<body>
+    <script>
+        // Function to check if a variable is defined
+        function isDefined(value) {
+            return typeof value !== 'undefined';
+        }
+
+        // Function to prompt the user for input and check its data type
+        function checkInputDataType() {
+            let userInput = prompt("Enter a value:");
+            
+            if (userInput === null) {
+                alert("No input provided.");
+            } else {
+                if (isDefined(userInput)) {
+                    alert("The data type of the input is: " + typeof userInput);
+                } else {
+                    alert("The input is not defined.");
+                }
+            }
+        }
+
+        // Call the function to start the process
+        checkInputDataType();
+    </script>
+</body>
+</html>
